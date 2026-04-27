@@ -38,7 +38,7 @@ body::before {
 /* РАМА */
 .container {
     width: 700px;
-    height: 980px;
+    height: 990px;
     padding: 20px 30px;
 
     background: rgba(120,120,120,0.25);
@@ -72,15 +72,15 @@ body::before {
     color: white;
 }
 
-/* ОБЁРТКА ДЛЯ БЛОКОВ (важно!) */
+/* ОБЁРТКА */
 .blocks {
-    margin-top: 55px; /* ← ОТСТУП ОТ ИМЕНИ */
+    margin-top: 55px;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px; /* расстояние между блоками */
+    gap: 20px;
 }
 
 /* БЛОКИ */
@@ -100,13 +100,75 @@ body::before {
     border: 1px solid rgba(255,255,255,0.2);
 
     transition: 0.4s;
-
-     text-align: center; /* ← ВОТ ЭТО ДОБАВЬ */
+    text-align: center;
 }
 
 .block:hover {
     transform: translateY(-5px);
     background: rgba(255,255,255,0.25);
+}
+
+/* 🔥 ССЫЛКА */
+.block a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.block a:hover {
+    text-decoration: underline;
+}
+
+/* 🔥 МОДАЛЬНОЕ ОКНО */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    width: 300px;
+}
+
+.modal-box p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.modal-box button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.yes {
+    background: white;
+    color: black;
+}
+
+.no {
+    background: gray;
+    color: white;
 }
 </style>
 
@@ -120,36 +182,64 @@ body::before {
 
     <div class="name">Nikita Demin</div>
 
-    <!--  ВАЖНО: ОБЁРТКА -->
     <div class="blocks">
 
-    <div class="block">
-        <p><b>О себе:</b></p>
-        <p>😀 Студент и начинающий программист</p>
-        <p>🤓 Изучаю Python, веб-технологии и иностранные языки</p>
-        <p>🎮 Увлекаюсь компьютерными играми</p>
-        <p>🤾‍♂️ Занимаюсь спортом</p>
-    </div>
+        <div class="block">
+            <p><b>О себе:</b></p>
+            <p>😀 Студент и начинающий программист</p>
+            <p>🤓 Изучаю Python, веб-технологии и иностранные языки</p>
+            <p>🎮 Увлекаюсь компьютерными играми</p>
+            <p>🤾‍♂️ Занимаюсь спортом</p>
+        </div>
 
-    <div class="block">
-        <p><b>Навыки:</b></p>
-        <p>🐍 Python — базовые скрипты и логика</p>
-        <p>🌐 HTML — создание простых страниц</p>
-        <p>🗄️ SQL — выполнение запросов, работа с данными</p>
-        <p>📄 Word — оформление по ГОСТ</p>
-        <p>🇬🇧 Английский — A2</p>
-    </div>
+        <div class="block">
+            <p><b>Навыки:</b></p>
+            <p>🐍 Python — базовые скрипты и логика</p>
+            <p>🌐 HTML — создание простых страниц</p>
+            <p>🗄️ SQL — выполнение запросов</p>
+            <p>📄 Word — оформление по ГОСТ</p>
+            <p>🇬🇧 Английский — A2</p>
+        </div>
 
-    <div class="block">
-        <p><b>Контактные данные:</b></p>
-        <p>Почта: boonbeks.xxx@gmail.com</p>
-        <p>Telegram: @dem_bro119</p>
+        <div class="block">
+            <p><b>Контакты:</b></p>
+            <p>Почта: boonbeks.xxx@gmail.com</p>
+            <p>Telegram: @dem_bro119</p>
+        </div>
+
+        <div class="block">
+            <p><b>Ссылка на проект:</b></p>
+            <p>
+                <a href="#" onclick="openModal()">GitHub</a>
+            </p>
+        </div>
+
     </div>
 
 </div>
 
-
+<--МОДАЛЬНОЕ ОКНО -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <p>Вы точно хотите перейти в данный проект? 🤔</p>
+        <button class="yes" onclick="goToSite()">Да</button>
+        <button class="no" onclick="closeModal()">Нет</button>
+    </div>
 </div>
+
+<script>
+function openModal() {
+    document.getElementById('modal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+}
+
+function goToSite() {
+    window.open("https://github.com/nekit7911bro/nekit7911bro.github.io", "_blank");
+}
+</script>
 
 </body>
 </html>
